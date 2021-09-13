@@ -64,17 +64,19 @@ function NewsDetail(): JSX.Element {
             <Typography color="textSecondary">{news.by}</Typography>
             <Typography color="textSecondary">{dayjs(news.time * 1000).format("YYYY-MM-DD")}</Typography>
           </Box>
-          <Box mt={2}>
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<LinkIcon />}
-              data-url={news.url}
-              onClick={handleClickLinkButton}
-            >
-              LINK
-            </Button>
-          </Box>
+          {news.url && (
+            <Box mt={2}>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<LinkIcon />}
+                data-url={news.url}
+                onClick={handleClickLinkButton}
+              >
+                LINK
+              </Button>
+            </Box>
+          )}
         </>
       )}
       {!pending && error && <FeedbackBox message="존재하지 않는 뉴스입니다." />}
