@@ -21,9 +21,7 @@ function Header(): JSX.Element {
     <AppBar position="static">
       <Toolbar>
         <Link className={classes.link} to="/">
-          <Typography variant="h6">
-            Hacker News
-          </Typography>
+          <Typography variant="h6">Hacker News</Typography>
         </Link>
       </Toolbar>
     </AppBar>

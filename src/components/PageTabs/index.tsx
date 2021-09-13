@@ -15,7 +15,7 @@ function PageTabs({ pending, category }: PageTabsProps): JSX.Element {
   const history = useHistory();
 
   const handleChangeTab = useCallback(
-    (event: React.ChangeEvent<{}>, newValue: string) => history.push(`/news/${newValue}`, null),
+    (event: React.ChangeEvent<{}>, newValue: string) => history.push(`/news/${newValue}`),
     [history]
   );
 
