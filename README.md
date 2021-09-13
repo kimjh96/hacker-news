@@ -4,6 +4,9 @@ HN API(https://github.com/HackerNews/API) 를 통해 category 별 뉴스 목록�
 ## Getting Started
 `yarn && yarn start`
 
+## Coding Conventions
+`yarn conventions`
+
 ## Project Stack
 <ul>
   <li>React</li>
