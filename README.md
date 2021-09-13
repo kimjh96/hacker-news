@@ -20,6 +20,7 @@ HN API(https://github.com/HackerNews/API) 를 통해 category 별 뉴스 목록�
     /, /news/:category 페이지
     <ul>
       <li>category 값에 따른 뉴스 목록을 보여줍니다. (default: "topstories")</li>
+      <li>날짜 기준으로 내림차순 정렬됩니다.</li>
     </ul>
   </li>
   <li>
