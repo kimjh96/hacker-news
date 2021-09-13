@@ -7,12 +7,14 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles(() => createStyles({
-  link: {
-    textDecoration: "none",
-    color: "inherit"
-  }
-}));
+const useStyles = makeStyles(() =>
+  createStyles({
+    link: {
+      textDecoration: "none",
+      color: "inherit"
+    }
+  })
+);
 
 function Header(): JSX.Element {
   const classes = useStyles();

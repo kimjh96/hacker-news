@@ -12,23 +12,21 @@ import Typography from "@material-ui/core/Typography";
 // types
 import { News } from "../../types";
 
-const useStyles = makeStyles(() => createStyles({
-  root: {
-    textDecoration: "none",
-    color: "inherit"
-  }
-}));
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      textDecoration: "none",
+      color: "inherit"
+    }
+  })
+);
 
 type NewsCardProps = {
   category: string;
   news: News;
 };
 
-function NewsCard({
-  category, news: {
-    id, title, by, time
-  }
-}: NewsCardProps): JSX.Element {
+function NewsCard({ category, news: { id, title, by, time } }: NewsCardProps): JSX.Element {
   const classes = useStyles();
 
   return (

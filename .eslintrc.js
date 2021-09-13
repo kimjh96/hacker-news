@@ -1,7 +1,7 @@
 module.exports = {
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint"],
-  extends: ["airbnb", "plugin:@typescript-eslint/recommended"],
+  extends: ["airbnb", "plugin:@typescript-eslint/recommended", "prettier"],
   rules: {
     quotes: [2, "double", { avoidEscape: true }],
     camelcase: "off",
