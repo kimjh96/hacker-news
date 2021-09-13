@@ -18,11 +18,18 @@ function News(): JSX.Element {
     category: string;
   }>();
 
-  const [category] = useState<string>(params.category || "topstories");
+  const [category, setCategory] = useState<string>("topstories");
   const [newsIds, setNewsIds] = useState<Array<number>>([]);
   const [newsList, setNewsList] = useState<NewsT[]>([]);
   const [pending, setPending] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+
+  useEffect(() => {
+    const { category: paramsCategory } = params;
+    if (paramsCategory) {
+      setCategory(paramsCategory);
+    }
+  }, [params]);
 
   useEffect(() => {
     setError(false);
