@@ -14,19 +14,20 @@ import { fetchNewsByCategory, fetchNewsDetailById } from "../../api";
 import { News as NewsT } from "../../types";
 
 function News(): JSX.Element {
+  const params = useParams<{
+    category: string;
+  }>();
+
+  const [category] = useState<string>(params.category || "topstories");
   const [newsIds, setNewsIds] = useState<Array<number>>([]);
   const [newsList, setNewsList] = useState<NewsT[]>([]);
   const [pending, setPending] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-  const { category } = useParams<{
-    category: string;
-  }>();
-
   useEffect(() => {
     setError(false);
 
-    fetchNewsByCategory(category || "topstories")
+    fetchNewsByCategory(category)
       .then((response) => {
         setPending(true);
         setNewsIds(response.data.sort((a: number, b: number) => b - a));
