@@ -7,7 +7,7 @@ import Layout from "./components/Layout";
 // Pages
 import News from "./pages/news";
 import NewsDetail from "./pages/news/detail";
-import Error404 from "./pages/error/Error404";
+import Error404 from "./pages/error/error404";
 
 function App(): JSX.Element {
   return (
