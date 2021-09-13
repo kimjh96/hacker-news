@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import PageTabs from "../../components/PageTabs";
 import NewsCard from "../../components/NewsCard";
 import ProgressBox from "../../components/ProgressBox";
+import FeedbackBox from "../../components/FeedbackBox";
 
 // API
 import { fetchNewsByCategory, fetchNewsDetailById } from "../../api";
@@ -16,29 +17,39 @@ function News(): JSX.Element {
   const [newsIds, setNewsIds] = useState<Array<number>>([]);
   const [newsList, setNewsList] = useState<NewsT[]>([]);
   const [pending, setPending] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
   const { category } = useParams<{
     category: string;
   }>();
 
   useEffect(() => {
+    setError(false);
+
     fetchNewsByCategory(category || "topstories")
       .then((response) => {
         setPending(true);
-        setNewsIds(response.data);
+        setNewsIds(response.data.sort((a: number, b: number) => b - a));
       })
       .catch(() => {
-        alert("알 수 없는 오류입니다. 잠시 후 다시 시도해주세요!");
+        setError(true);
+        setPending(false);
       });
   }, [category]);
 
   useEffect(() => {
     if (newsIds.length !== 0) {
-      Promise.all(newsIds.map((item) => fetchNewsDetailById(item))).then((response) => {
-        const dataList = response.map((item) => item.data).filter((item) => item);
-        setNewsList(dataList);
-        setPending(false);
-      });
+      Promise.all(newsIds.map((item) => fetchNewsDetailById(item)))
+        .then((response) => {
+          const dataList = response.map((item) => item.data).filter((item) => item);
+
+          setNewsList(dataList);
+          setPending(false);
+        })
+        .catch(() => {
+          setError(true);
+          setPending(false);
+        });
     }
   }, [newsIds]);
 
@@ -46,7 +57,8 @@ function News(): JSX.Element {
     <>
       <PageTabs pending={pending} category={category} />
       {pending && <ProgressBox message="Loading..." />}
-      {!pending && newsList.map((news) => <NewsCard category={category} news={news} />)}
+      {!pending && newsList.map((news) => <NewsCard key={`news-${news.id}`} category={category} news={news} />)}
+      {error && <FeedbackBox message="잘못된 접근입니다." />}
     </>
   );
 }
