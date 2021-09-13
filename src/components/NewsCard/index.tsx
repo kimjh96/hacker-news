@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 
 // Material UI
@@ -13,27 +14,35 @@ import { News } from "../../types";
 
 const useStyles = makeStyles(() => createStyles({
   root: {
-    cursor: "pointer"
+    textDecoration: "none",
+    color: "inherit"
   }
 }));
 
 type NewsCardProps = {
+  category: string;
   news: News;
 };
 
-function NewsCard({ news: { title, by, time } }: NewsCardProps): JSX.Element {
+function NewsCard({
+  category, news: {
+    id, title, by, time
+  }
+}: NewsCardProps): JSX.Element {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} square>
-      <CardContent>
-        <Typography variant="h6">{title}</Typography>
-        <Box display="flex" justifyContent="space-between">
-          <Typography color="textSecondary">{`by. ${by}`}</Typography>
-          <Typography color="textSecondary">{dayjs(time * 1000).format("YYYY-MM-DD")}</Typography>
-        </Box>
-      </CardContent>
-    </Card>
+    <Link to={`/news/${category}/${id}`} className={classes.root}>
+      <Card square>
+        <CardContent>
+          <Typography variant="h6">{title}</Typography>
+          <Box display="flex" justifyContent="space-between">
+            <Typography color="textSecondary">{`by. ${by}`}</Typography>
+            <Typography color="textSecondary">{dayjs(time * 1000).format("YYYY-MM-DD")}</Typography>
+          </Box>
+        </CardContent>
+      </Card>
+    </Link>
   );
 }
 
