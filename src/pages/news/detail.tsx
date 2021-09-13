@@ -9,7 +9,6 @@ import Button from "@material-ui/core/Button";
 
 // Material UI Icons
 import LinkIcon from "@material-ui/icons/Link";
-import { News } from "../../types";
 
 // Components
 import ProgressBox from "../../components/ProgressBox";
@@ -17,6 +16,9 @@ import FeedbackBox from "../../components/FeedbackBox";
 
 // API
 import { fetchNewsDetailById } from "../../api";
+
+// types
+import { News } from "../../types";
 
 function NewsDetail(): JSX.Element {
   const [news, setNews] = useState<News | null>(null);
