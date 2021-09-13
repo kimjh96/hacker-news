@@ -25,7 +25,7 @@
     "lint": "eslint \"./**/*.{js,ts,tsx}\"",
     "lint:fix": "eslint --fix \"./**/*.{js,ts,tsx}\"",
     "prettier": "prettier --write --config ./.prettierrc \"./**/*.{js,ts,tsx}\"",
-    "convention": "yarn prettier && yarn lint:fix"
+    "conventions": "yarn prettier && yarn lint:fix"
   },
   "eslintConfig": {
     "extends": [
